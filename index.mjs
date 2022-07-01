@@ -37,7 +37,10 @@ const createScene = function () {
   document.addEventListener('webkitpointerlockchange', pointerlockchange, false);
 
   //create Player
-  const _player = new Player(scene);
+  const _player = new Player(scene, 0, 0);
+  //create npc
+  const _npc = new Player(scene, -5, -4);
+  _npc.mesh.checkCollisions = true;
   //create camera target (invisible)
   const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);
   cameraTargetMesh.visibility = 0;
