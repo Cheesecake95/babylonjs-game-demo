@@ -1,4 +1,4 @@
-import keysDown from "./controller.js";
+import keysDown from "../util/controller.js";
 
 function Player(scene, x, z) {
   this.mesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);

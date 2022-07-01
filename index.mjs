@@ -1,4 +1,5 @@
-import Player from "./player.js";
+import Npc from "./assert/npc.js";
+import Player from "./assert/player.js";
 
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
@@ -39,7 +40,7 @@ const createScene = function () {
   //create Player
   const _player = new Player(scene, 0, 0);
   //create npc
-  const _npc = new Player(scene, -5, -4);
+  const _npc = new Npc(scene, -5, -4);
   _npc.mesh.checkCollisions = true;
   //create camera target (invisible)
   const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);
