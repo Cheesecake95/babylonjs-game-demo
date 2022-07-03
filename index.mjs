@@ -66,6 +66,20 @@ const createScene = function () {
   _npc.mesh.checkCollisions = true;
   obstacles.push(_npc.mesh);
 
+  var hl = new BABYLON.HighlightLayer("hl1", scene, {
+    isStroke: true,
+  });
+  hl.blurHorizontalSize = 0.2;
+  hl.blurVerticalSize = 0.2;
+  _npc.mesh.actionManager = new BABYLON.ActionManager(scene);
+  _npc.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function (ev) {
+    scene.hoverCursor = "pointer";
+    hl.addMesh(_npc.mesh, BABYLON.Color3.Green());
+  }));
+  _npc.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function (ev) {
+    hl.removeMesh(_npc.mesh, BABYLON.Color3.Green());
+  }));
+
   scene.registerBeforeRender(() => {
     // Update camera target
     const cameraTargetMeshOffsetPosition = cameraTargetMesh.absolutePosition.add(new BABYLON.Vector3(0, 1, 0));

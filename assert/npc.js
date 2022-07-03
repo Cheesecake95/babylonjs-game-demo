@@ -8,8 +8,6 @@ function Npc(scene, x, z) {
   this.mesh.position.x += x;
   this.mesh.position.z += z;
 
-  this.actionManager = new BABYLON.ActionManager(scene);
-
   return this;
 }
 export default Npc;
