@@ -39,9 +39,6 @@ const createScene = function () {
 
   //create Player
   const _player = new Player(scene, 0, 0);
-  //create npc
-  const _npc = new Npc(scene, -5, -4);
-  _npc.mesh.checkCollisions = true;
   //create camera target (invisible)
   const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);
   cameraTargetMesh.visibility = 0;
@@ -64,6 +61,10 @@ const createScene = function () {
   slide.rotation.x += Math.PI / 2.8;
   slide.checkCollisions = true;
   obstacles.push(slide);
+  //create npc
+  const _npc = new Npc(scene, -5, -4);
+  _npc.mesh.checkCollisions = true;
+  obstacles.push(_npc.mesh);
 
   scene.registerBeforeRender(() => {
     // Update camera target
