@@ -40,9 +40,10 @@ const createScene = function () {
   //create Player
   const _player = new Player(scene, 0, 0);
   //create camera target (invisible)
-  const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 2 }, scene);
+  const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 1 }, scene);
   cameraTargetMesh.visibility = 0;
   cameraTargetMesh.setParent(_player.mesh);
+  //camera position
   cameraTargetMesh.position = new BABYLON.Vector3(0, 0, 1);
 
   //Obstacles, ground

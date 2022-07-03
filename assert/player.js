@@ -17,8 +17,8 @@ function Player(scene, x, z) {
   const velocity = new BABYLON.Vector3();
   const ray = new BABYLON.Ray();
   const rayHelper = new BABYLON.RayHelper(ray);
-  rayHelper.attachToMesh(this.mesh, new BABYLON.Vector3(0, -1, 0), new BABYLON.Vector3(0, -1, 0), 0.1);
-  rayHelper.show(scene, new BABYLON.Color3(1, 0, 0));
+  rayHelper.attachToMesh(this.mesh, new BABYLON.Vector3(0, -1, 0), new BABYLON.Vector3(0, -0.95, 0), 0.1);
+  rayHelper.show(scene, new BABYLON.Color3.Red());
   let onObject = false;
   this.jump = () => {
     velocity.y = 0.15;
