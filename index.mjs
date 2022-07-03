@@ -70,8 +70,8 @@ const createScene = function () {
   var hl = new BABYLON.HighlightLayer("hl1", scene, {
     isStroke: true,
   });
-  hl.blurHorizontalSize = 0.2;
-  hl.blurVerticalSize = 0.2;
+  hl.blurHorizontalSize = 0.1;
+  hl.blurVerticalSize = 0.1;
   _npc.area.actionManager = new BABYLON.ActionManager(scene);
   _npc.area.actionManager.registerAction(new BABYLON.ExecuteCodeAction({ trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: _player.mesh }, function (ev) {
     scene.hoverCursor = "pointer";
