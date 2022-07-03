@@ -9,7 +9,6 @@ function Npc(scene, x, z) {
   this.mesh.position.z += z;
 
   this.actionManager = new BABYLON.ActionManager(scene);
-  this.actionManager.registerAction()
 
   return this;
 }
