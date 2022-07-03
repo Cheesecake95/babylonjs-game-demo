@@ -7,8 +7,8 @@ const engine = new BABYLON.Engine(canvas, true);
 const createScene = function () {
   const scene = new BABYLON.Scene(engine);
   const camera = new BABYLON.ArcRotateCamera('camera', 0, Math.PI / 2, 5, new BABYLON.Vector3(), scene);
-  camera.angularSensibilityX = 500;
-  camera.angularSensibilityY = 500;
+  camera.angularSensibilityX = 1000;
+  camera.angularSensibilityY = 2000;
   camera.inertia = 0;
   camera.attachControl(canvas, false);
 
@@ -72,12 +72,12 @@ const createScene = function () {
   });
   hl.blurHorizontalSize = 0.2;
   hl.blurVerticalSize = 0.2;
-  _npc.mesh.actionManager = new BABYLON.ActionManager(scene);
-  _npc.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOverTrigger, function (ev) {
+  _npc.area.actionManager = new BABYLON.ActionManager(scene);
+  _npc.area.actionManager.registerAction(new BABYLON.ExecuteCodeAction({ trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: _player.mesh }, function (ev) {
     scene.hoverCursor = "pointer";
     hl.addMesh(_npc.mesh, BABYLON.Color3.Green());
   }));
-  _npc.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(BABYLON.ActionManager.OnPointerOutTrigger, function (ev) {
+  _npc.area.actionManager.registerAction(new BABYLON.ExecuteCodeAction({ trigger: BABYLON.ActionManager.OnIntersectionExitTrigger, parameter: _player.mesh }, function (ev) {
     hl.removeMesh(_npc.mesh, BABYLON.Color3.Green());
   }));
 

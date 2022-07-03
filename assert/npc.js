@@ -7,6 +7,10 @@ function Npc(scene, x, z) {
   this.mesh.position.y += 1;
   this.mesh.position.x += x;
   this.mesh.position.z += z;
+  this.area = BABYLON.MeshBuilder.CreateSphere('box', { diameter: 4 }, scene);
+  this.area.position = this.mesh.position;
+  this.area.visibility = 0;
+
 
   return this;
 }
