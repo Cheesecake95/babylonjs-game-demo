@@ -31,7 +31,7 @@ function Player(scene, x, z) {
     }
     const delta = command.frameTime - prevFrameTime;
 
-    // Raycast Method 1
+    // Raycast
     const pick = scene.pickWithRay(ray);
     if (pick) onObject = pick.hit;
 
