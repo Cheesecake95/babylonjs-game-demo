@@ -1,4 +1,4 @@
-const socket = new WebSocket("wwss://65loa4x8k0.execute-api.ap-northeast-1.amazonaws.com/production");
+const socket = new WebSocket("wss://65loa4x8k0.execute-api.ap-northeast-1.amazonaws.com/production");
 
 //连接建立时触发
 socket.onopen = function () {
@@ -7,5 +7,5 @@ socket.onopen = function () {
 }
 //收到消息时触发
 socket.onmessage = function (event) {
-  console.log(event.body);
+  console.log(event.data);
 };

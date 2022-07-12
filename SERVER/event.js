@@ -6,3 +6,4 @@ let players = {};
 emitter.on('addPlayer', function () {
   console.log('join game 触发');
 });
+emitter.emit('addPlayer');

@@ -1,6 +1,4 @@
-const AWS = require('aws-sdk');
-const ENDPOINT = '65loa4x8k0.execute-api.ap-northeast-1.amazonaws.com/production/';
-const client = new AWS.ApiGatewayManagementApi({ endpoint: ENDPOINT });
+
 const events = require('events');
 const emitter = new events.EventEmitter();
 
@@ -50,6 +48,9 @@ exports.handler = async (event) => {
         //TODO：将login时保存在session里的username带入到这里的connectionID
         names[connectionId] = 'User' + Math.floor(Math.random() * 5000);
         await sendToAll(Object.keys(names), (names[connectionId] + " has joined the chat"));
+        emitter.on('addPlayer', function () {
+          console.log('join game 触发');
+        });
         emitter.emit('joinGame');
         break;
       case '$disconnect':
