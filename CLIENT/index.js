@@ -23,30 +23,22 @@ const createScene = function () {
   camera.attachControl(canvas, false);
 
   let isLocked = false;
-  scene.onPointerDown = evt => {
-    canvas.requestPointerLock();
-    // if (!isLocked) {
-    //   canvas.requestPointerLock = canvas.requestPointerLock || canvas.msRequestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
-    //   if (canvas.requestPointerLock) {
-    //     canvas.requestPointerLock();
-    //     return;
-    //   }
-    // }
-  }
-
-  // const pointerlockchange = () => {
-  //   // @ts-ignore
-  //   const controlEnabled = document.mozPointerLockElement || document.webkitPointerLockElement || document.msPointerLockElement || document.pointerLockElement || null;
-  //   if (!controlEnabled) {
-  //     isLocked = false;
-  //   } else {
-  //     isLocked = true;
-  //   }
-  // };
-  // document.addEventListener('pointerlockchange', pointerlockchange, false);
-  // document.addEventListener('mspointerlockchange', pointerlockchange, false);
-  // document.addEventListener('mozpointerlockchange', pointerlockchange, false);
-  // document.addEventListener('webkitpointerlockchange', pointerlockchange, false);
+  scene.onKeyboardObservable.add((kbInfo) => {
+    if (kbInfo.type == BABYLON.KeyboardEventTypes.KEYDOWN) {
+      switch (kbInfo.event.key) {
+        case "v":
+          canvas.requestPointerLock();
+          isLocked = true;
+          console.log(isLocked)
+          break;
+        case "b":
+          document.exitPointerLock();
+          isLocked = false;
+          console.log(isLocked)
+          break;
+      }
+    }
+  })
 
   //create Player
   const _player = new Player(scene, 0, 0);
