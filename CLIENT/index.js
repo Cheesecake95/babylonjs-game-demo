@@ -24,14 +24,14 @@ const createScene = function () {
 
   let isLocked = false;
   scene.onKeyboardObservable.add((kbInfo) => {
-    if (kbInfo.type == BABYLON.KeyboardEventTypes.KEYDOWN) {
-      switch (kbInfo.event.key) {
-        case "v":
+    if (kbInfo.type == BABYLON.KeyboardEventTypes.KEYDOWN && kbInfo.event.key == 'v') {
+      switch (isLocked) {
+        case false:
           canvas.requestPointerLock();
           isLocked = true;
           console.log(isLocked)
           break;
-        case "b":
+        case true:
           document.exitPointerLock();
           isLocked = false;
           console.log(isLocked)
