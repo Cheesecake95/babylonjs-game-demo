@@ -24,28 +24,29 @@ const createScene = function () {
 
   let isLocked = false;
   scene.onPointerDown = evt => {
-    if (!isLocked) {
-      canvas.requestPointerLock = canvas.requestPointerLock || canvas.msRequestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
-      if (canvas.requestPointerLock) {
-        canvas.requestPointerLock();
-        return;
-      }
-    }
+    canvas.requestPointerLock();
+    // if (!isLocked) {
+    //   canvas.requestPointerLock = canvas.requestPointerLock || canvas.msRequestPointerLock || canvas.mozRequestPointerLock || canvas.webkitRequestPointerLock;
+    //   if (canvas.requestPointerLock) {
+    //     canvas.requestPointerLock();
+    //     return;
+    //   }
+    // }
   }
 
-  const pointerlockchange = () => {
-    // @ts-ignore
-    const controlEnabled = document.mozPointerLockElement || document.webkitPointerLockElement || document.msPointerLockElement || document.pointerLockElement || null;
-    if (!controlEnabled) {
-      isLocked = false;
-    } else {
-      isLocked = true;
-    }
-  };
-  document.addEventListener('pointerlockchange', pointerlockchange, false);
-  document.addEventListener('mspointerlockchange', pointerlockchange, false);
-  document.addEventListener('mozpointerlockchange', pointerlockchange, false);
-  document.addEventListener('webkitpointerlockchange', pointerlockchange, false);
+  // const pointerlockchange = () => {
+  //   // @ts-ignore
+  //   const controlEnabled = document.mozPointerLockElement || document.webkitPointerLockElement || document.msPointerLockElement || document.pointerLockElement || null;
+  //   if (!controlEnabled) {
+  //     isLocked = false;
+  //   } else {
+  //     isLocked = true;
+  //   }
+  // };
+  // document.addEventListener('pointerlockchange', pointerlockchange, false);
+  // document.addEventListener('mspointerlockchange', pointerlockchange, false);
+  // document.addEventListener('mozpointerlockchange', pointerlockchange, false);
+  // document.addEventListener('webkitpointerlockchange', pointerlockchange, false);
 
   //create Player
   const _player = new Player(scene, 0, 0);
@@ -67,23 +68,14 @@ const createScene = function () {
   obstacles.push(ground);
   //create stairs
   const _stairs = new Stairs(scene, 3, 14, 0.5, -4, 0, Math.PI / 2.8);
-
   obstacles.push(_stairs);
-  //highlight
-  var hl = new BABYLON.HighlightLayer("hl1", scene, {
-    isStroke: true,
-  });
-  hl.blurHorizontalSize = 0.1;
-  hl.blurVerticalSize = 0.1;
+
   //create npc
   const _npc = new Npc(scene, -5, -4);
   obstacles.push(_npc.mesh);
 
   //TODO=============================
-  if (_npc.mesh.position.subtract(_player.mesh.position).length() >= 2) {
-    hl.addMesh(_npc.mesh, BABYLON.Color3.Green());
-    console.log('close to npc')
-  }
+  // _npc.highlight(_player);
 
   // _npc.area.actionManager = new BABYLON.ActionManager(scene);
   // _npc.area.actionManager.registerAction(new BABYLON.ExecuteCodeAction({ trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: _player.mesh }, function (ev) {

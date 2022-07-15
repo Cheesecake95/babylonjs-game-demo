@@ -8,9 +8,22 @@ function Npc(scene, x, z) {
   this.mesh.position.x += x;
   this.mesh.position.z += z;
   this.mesh.checkCollisions = true;
-  // this.area = BABYLON.MeshBuilder.CreateSphere('box', { diameter: 4 }, scene);
-  // this.area.position = this.mesh.position;
-  // this.area.visibility = 0;
+
+  var hl = new BABYLON.HighlightLayer("hl1", scene, {
+    isStroke: true,
+  });
+  hl.blurHorizontalSize = 0.1;
+  hl.blurVerticalSize = 0.1;
+
+  this.mesh.actionManager = new BABYLON.ActionManager(scene);
+  this.mesh.actionManager.registerAction(new BABYLON.ExecuteCodeAction(
+    {
+      trigger: BABYLON.ActionManager.OnLeftPickTrigger,
+    },
+    function () {
+      console.log("I AM TRIGGERED");
+    })
+  );
 
   return this;
 }
