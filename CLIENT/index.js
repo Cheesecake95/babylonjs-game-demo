@@ -1,6 +1,7 @@
 import Npc from "../CLIENT/assets/npc.js";
 import Player from "../CLIENT/assets/player.js";
 import Stairs from "./assets/stairs.js";
+import addCrosshair from "./util/crosshair.js";
 
 const canvas = document.getElementById("renderCanvas");
 const engine = new BABYLON.Engine(canvas, true);
@@ -30,6 +31,8 @@ const createScene = function () {
       }
     }
   })
+  //create crosshair
+  const _crosshair = addCrosshair(scene, camera);
 
   //create Player
   const _player = new Player(scene, 0, 0);
