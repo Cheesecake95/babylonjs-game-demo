@@ -46,6 +46,7 @@ function Player(scene, x, z) {
     velocity.z = 0;
     if (command.moveRightKeyDown || command.moveLeftKeyDown) velocity.z = direction.z * delta / 300;
     if (command.moveForwardKeyDown || command.moveBackwardKeyDown) velocity.x = direction.x * delta / 300;
+    if (command.shiftKeyDown) { velocity.z = velocity.z * 2; velocity.x = velocity.x * 2 };
 
     // velocity.y = command.startVelocityY;
     velocity.y -= delta / 3000;

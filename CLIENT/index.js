@@ -10,8 +10,10 @@ const createScene = function () {
   const camera = new BABYLON.ArcRotateCamera('camera', 0, Math.PI / 2, 5, new BABYLON.Vector3(), scene);
   camera.angularSensibilityX = 1000;
   camera.angularSensibilityY = 2000;
+  camera.lowerRadiusLimit = 3;
+  camera.upperRadiusLimit = 20;
   camera.inertia = 0;
-  camera.attachControl(canvas, false);
+  camera.attachControl(canvas, true);
 
   let isLocked = false;
   scene.onKeyboardObservable.add((kbInfo) => {
@@ -20,12 +22,10 @@ const createScene = function () {
         case null:
           canvas.requestPointerLock();
           isLocked = true;
-          console.log(isLocked)
           break;
         case canvas:
           document.exitPointerLock();
           isLocked = false;
-          console.log(isLocked)
           break;
       }
     }

@@ -6,6 +6,7 @@ function keysDown(scene) {
     moveLeftKeyDown: false,
     moveRightKeyDown: false,
     jumpKeyDown: false,
+    shiftKeyDown: false,
     cameraAlpha: 0,
     cameraBeta: 0
   }
@@ -33,6 +34,9 @@ function keysDown(scene) {
           case ' ':
             this.command.jumpKeyDown = true;
             break;
+          case 'Shift':
+            this.command.shiftKeyDown = true;
+            break;
         }
         break;
       case BABYLON.KeyboardEventTypes.KEYUP:
@@ -55,6 +59,9 @@ function keysDown(scene) {
             break;
           case ' ':
             this.command.jumpKeyDown = false;
+            break;
+          case 'Shift':
+            this.command.shiftKeyDown = false;
             break;
         }
         break;
