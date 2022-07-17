@@ -1,5 +1,6 @@
 import Npc from "../CLIENT/assets/npc.js";
 import Player from "../CLIENT/assets/player.js";
+import Able from "./assets/abel.js";
 import Stairs from "./assets/stairs.js";
 import addCrosshair from "./util/crosshair.js";
 
@@ -36,6 +37,9 @@ const createScene = function () {
 
   //create Player
   const _player = new Player(scene, 0, 0);
+
+  const _abel = Able(scene);
+
   //create camera target (invisible)
   const cameraTargetMesh = BABYLON.MeshBuilder.CreateBox('box', { height: 1 }, scene);
   cameraTargetMesh.visibility = 0;
@@ -59,17 +63,6 @@ const createScene = function () {
   //create npc
   const _npc = new Npc(scene, -5, -4);
   obstacles.push(_npc.mesh);
-
-  //TODO=============================
-  // _npc.highlight(_player);
-
-  // _npc.area.actionManager = new BABYLON.ActionManager(scene);
-  // _npc.area.actionManager.registerAction(new BABYLON.ExecuteCodeAction({ trigger: BABYLON.ActionManager.OnIntersectionEnterTrigger, parameter: _player.mesh }, function (ev) {
-  //   scene.hoverCursor = "pointer";
-  // }));
-  // _npc.area.actionManager.registerAction(new BABYLON.ExecuteCodeAction({ trigger: BABYLON.ActionManager.OnIntersectionExitTrigger, parameter: _player.mesh }, function (ev) {
-  //   hl.removeMesh(_npc.mesh, BABYLON.Color3.Green());
-  // }));
 
   scene.registerBeforeRender(() => {
     // Update camera target
